@@ -1,0 +1,149 @@
+package com.appheader.base.common.network;
+
+
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.android.volley.Cache;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.appheader.base.application.GlobalVars;
+import com.appheader.base.common.utils.LogUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by mayu on 15/8/25,上午11:28.
+ */
+public class RequestHelper {
+    private static final String TAG = "Volley";
+    private static RequestQueue mRequestQueue;
+
+    private static Context mCtx;
+
+    /**
+     * 初始化
+     * @param ctx
+     */
+    public static void init(Context ctx) {
+        mCtx = ctx;
+        if (mRequestQueue == null) {
+            mRequestQueue = Volley.newRequestQueue(mCtx);
+        }
+        mRequestQueue.start();
+    }
+
+    /**
+     * 发送请求
+     * @param tag 			【标记：用来表示当前请求】
+     * @param url
+     * @param params
+     * @param success
+     * @param failed
+     */
+    public static <T> void sendRequest(String tag, String url, Map<String, String> params, Response.Listener<JSONObject> success, Response.ErrorListener failed) {
+        logParams(url, params);
+        NormalPostRequest request = new NormalPostRequest(GlobalVars.getAppServerUrl() + url, params, success, failed);
+        request.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        mRequestQueue.add(request);
+    }
+    
+    /**
+     * 上传多个文件
+     * @param tag 			【标记】
+     * @param url			【请求地址】
+     * @param filePartName	【文件名称】
+     * @param files			【文件】
+     * @param params		【参数】
+     * @param listener		【返回成功】
+     * @param errorListener	【返回失败】
+     */
+    public static void uploadFiles(String tag, String url,
+			String filePartName, List<File> files,
+			Map<String, String> params,
+			Response.Listener<String> listener, Response.ErrorListener errorListener){
+    	logParams(url, params);
+    	MultipartRequest request = new MultipartRequest(url, errorListener, listener, filePartName, files, params);
+    	request.setTag(tag);
+    	mRequestQueue.add(request);
+    }
+    
+    /**
+     * 上传单个文件
+     * @param tag 			【标记】
+     * @param url			【请求地址】
+     * @param filePartName	【文件名称】
+     * @param file			【文件】
+     * @param params		【参数】
+     * @param listener		【返回成功】
+     * @param errorListener	【返回失败】
+     */
+    public static void uploadFile(String tag, String url,
+			String filePartName, File file,
+			Map<String, String> params,
+			Response.Listener<String> listener, Response.ErrorListener errorListener){
+    	logParams(url, params);
+    	MultipartRequest request = new MultipartRequest(url, errorListener, listener, filePartName, file, params);
+    	request.setTag(tag);
+    	mRequestQueue.add(request);
+    }
+    
+    /**
+     * 取消请求
+     * @param tag
+     */
+    public static void cancel(Object tag) {
+        if (mRequestQueue != null) {
+            mRequestQueue.cancelAll(tag);
+        }
+    }
+
+    /**
+     * 清理缓存
+     */
+    public static void clearCache(){
+        mRequestQueue.getCache().clear();
+    }
+
+    /**
+     * 获取缓存
+     * @param url
+     * @return
+     */
+    public static JSONObject getCache(String url){
+        Cache cache = mRequestQueue.getCache();
+        Cache.Entry entry = cache.get(url);
+        if(entry != null){
+            try {
+                String data = new String(entry.data, "UTF-8");
+                try {
+					return new JSONObject(data);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }else {
+            return null;
+        }
+       return null;
+    }
+
+    /**
+     * 打印【请求地址、参数、标签】
+     * @param url
+     * @param paramStr
+     */
+    public static void logParams(String url, Map<String, String> param){
+        LogUtil.info("VolleyHelper", "【RequestURL:】\n" + url
+                + "\n【RequestParamStr:】\n" + ((param == null) ? "参数为空" : param.toString()));
+    }
+}

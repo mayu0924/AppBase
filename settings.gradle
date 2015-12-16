@@ -1,0 +1,3 @@
+include ':app', ':greendao-generator'
+include ':social_sdk_library_project'
+include ':umeng_share_lib'

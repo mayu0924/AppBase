@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <cn.itvk.forest.ui.common.widget.timerPicker.lib.NumberPicker
+            android:id="@+id/np_date"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <cn.itvk.forest.ui.common.widget.timerPicker.lib.NumberPicker
+            android:id="@+id/np_hour"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <cn.itvk.forest.ui.common.widget.timerPicker.lib.NumberPicker
+            android:id="@+id/np_minute"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

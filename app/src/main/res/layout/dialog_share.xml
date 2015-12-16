@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button android:id="@+id/btnWX"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="微信好友"
+            android:textColor="#333333"
+            android:textSize="17sp" />
+
+        <Button android:id="@+id/btnFriend"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="微信朋友圈"
+            android:textColor="#333333"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <Button android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:text="取 消"
+        android:textColor="#333333"
+        android:textSize="17sp" />
+
+</LinearLayout>

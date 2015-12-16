@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <view
+        android:id="@+id/image"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_x="0dip"
+        android:layout_y="0dip"
+        class="com.appheader.base.common.imgCrop.CropImageView"
+        android:background="#55000000" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip" >
+
+        <Button
+            android:id="@+id/discard"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/black"
+            android:text="取消"
+            android:textColor="@android:color/white"
+            android:visibility="visible"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/rotateLeft"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/discard"
+            android:background="@null"
+            android:src="@mipmap/ic_rotate_left"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/rotateRight"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/rotateLeft"
+            android:background="@null"
+            android:src="@mipmap/ic_rotate_right"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="200dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/rotateRight"
+            android:background="@android:color/black"
+            android:text="确定"
+            android:textColor="@android:color/white"
+            android:textSize="16.0sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

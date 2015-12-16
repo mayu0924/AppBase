@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AppBase</string>
+    <string name="save">保存</string>
+    <string name="query">查询</string>
+    <string name="update">更新</string>
+    <string name="delete">删除</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- public string -->
+    <string name="pub_network_error">加载数据失败，请检查您的网络连接。</string>
+
+    <!-- 图片裁剪 -->
+    <string name="saving_image">正在保存图片</string>
+    <string name="preparing_card">正在准备SD卡</string>
+    <string name="no_storage_card">找不到SD卡</string>
+    <string name="not_enough_space">存储空间不足</string>
+    
+    <!-- zxing -->
+    <string name="scan_text"></string> <!-- 将二维码放入框内，即可自动扫描 -->
+    <string name="msg_error">错误</string>
+    <string name="msg_invalid_value">值无效</string>
+</resources>

@@ -1,0 +1,5 @@
+/build
+/build/libs
+/build/dependency-cache
+/build/classes
+/build/tmp

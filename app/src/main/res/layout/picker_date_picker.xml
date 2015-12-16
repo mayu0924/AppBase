@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:su="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#333333"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <com.chejietong.app.ui.common.timerpicker.lib.NumberPicker
+            android:id="@+id/year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            su:internalMaxWidth="130dp"
+            su:selectionDivider="@drawable/picker_line"
+            android:layout_weight="1" />
+
+        <View android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#5b5b5b"/>
+        
+        <com.chejietong.app.ui.common.timerpicker.lib.NumberPicker
+            android:id="@+id/month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            su:internalMaxWidth="130dp"
+            su:selectionDivider="@drawable/picker_line"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1" />
+
+        <com.chejietong.app.ui.common.timerpicker.lib.NumberPicker
+            android:id="@+id/day"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>
