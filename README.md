@@ -1,4 +1,4 @@
-AppBase项目简介【未完待续】
+AppBase项目简介
 --------------------------------------------------------------------------
 AppBase是一系列通用类、辅助类、工具类的集合以及第三方sdk的使用，有以下特点：
 - **1. 通用性强** 	：常用方法、工具类集合
@@ -69,10 +69,10 @@ AppBase是一系列通用类、辅助类、工具类的集合以及第三方sdk�
 -----
 - **引入第三方开源框架ActiveAndroid.jar,实现数据库操作更简单
 - **使用文档：
-······· http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0104/2255.html
-······· https://github.com/codepath/android_guides/wiki/ActiveAndroid-Guide
-....... https://github.com/pardom/ActiveAndroid/downloads---下载jar
-....... http://greendao-orm.com/documentation/how-to-get-started/ --- GreenDao
+    http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0104/2255.html
+    https://github.com/codepath/android_guides/wiki/ActiveAndroid-Guide
+    https://github.com/pardom/ActiveAndroid/downloads 
+    http://greendao-orm.com/documentation/how-to-get-started/
 
 9. user包：用户管理
 -----
