@@ -7,7 +7,6 @@ AppBase是一系列通用类、辅助类、工具类的集合以及第三方sdk�
 
 其中包括shell命令，静默安装，bitmap处理，文件操作，加密存储器，计数器，均值器，吐司，日志，校验，提示，网络监测等基础功能，以及一些Base64、MD5、Hex、Byte、Number、Dialog、Filed、Class、Package、Telephone、Random等工具类。
 
-
 1. assit包：辅助
 -----
 - **AES**：					AES加密
