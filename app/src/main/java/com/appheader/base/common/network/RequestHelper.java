@@ -140,7 +140,7 @@ public class RequestHelper {
     /**
      * 打印【请求地址、参数、标签】
      * @param url
-     * @param paramStr
+     * @param param
      */
     public static void logParams(String url, Map<String, String> param){
         LogUtil.info("VolleyHelper", "【RequestURL:】\n" + url
