@@ -29,10 +29,10 @@ public class MainActivity extends BaseFragmentActivity {
         ButterKnife.bind(this);
 //        mDbService = DbService.getInstance(this);
         mGlideManager.mRequestManager.load("http://attach.bbs.miui.com/forum/201409/08/073328srdr74a8avagtatz.jpg")
-                .transform(new RotateTransformation(this, 90f))
 //                .thumbnail(0.2f)
-//                .crossFade(5000)
                 .centerCrop()
+                .transform(new RotateTransformation(this, 90f))
+                .crossFade(2000)
                 .into(mImageView);
     }
 
