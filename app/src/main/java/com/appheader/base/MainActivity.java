@@ -1,58 +1,44 @@
 package com.appheader.base;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
-import com.appheader.base.common.orm.DbService;
-import com.appheader.db.GreenArticle;
-import com.orhanobut.logger.Logger;
+import com.appheader.base.sdk.glide.BlurTransformation;
+import com.appheader.base.ui.baseAct.BaseFragmentActivity;
 
-import java.util.Date;
-import java.util.List;
-
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0104/2255.html
- * 
+ * <p>
  * https://github.com/codepath/android_guides/wiki/ActiveAndroid-Guide
- * @author mayu
  *
+ * @author mayu
  */
-public class MainActivity extends Activity {
-	private static final String TAG = MainActivity.class.getSimpleName();
-    private DbService mDbService;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		ButterKnife.bind(this);
-        mDbService = DbService.getInstance(this);
-		findViewById(R.id.save).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testSave();
-            }
-        });
-		findViewById(R.id.query).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testQuery();
-            }
-        });
-		findViewById(R.id.update).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testUpdate();
-            }
-        });
-	}
+public class MainActivity extends BaseFragmentActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
+    @Bind(R.id.imageView)
+    ImageView mImageView;
 
-    @OnClick(R.id.save)
-	public void testSave(){
+    //    private DbService mDbService;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+//        mDbService = DbService.getInstance(this);
+        mGlideManager.mRequestManager.load("http://c.hiphotos.baidu.com/zhidao/pic/item/f11f3a292df5e0feab59d9d95d6034a85fdf72a0.jpg")
+                .transform(new BlurTransformation(this))
+                .thumbnail(0.2f)
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .crossFade()
+                .into(mImageView);
+    }
+
+    /*@OnClick(R.id.save)
+    public void testSave(){
         GreenArticle greenArticle = new GreenArticle();
         greenArticle.setTitle("测试--" + System.currentTimeMillis());
         greenArticle.setColor("红色");
@@ -89,5 +75,5 @@ public class MainActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		ButterKnife.unbind(this);
-	}
+	}*/
 }

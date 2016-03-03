@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="10dp"></LinearLayout>
+            android:paddingTop="10dp"/>
 
         <RelativeLayout
             android:id="@+id/progress_frame"

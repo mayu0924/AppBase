@@ -18,7 +18,7 @@
     <string name="not_enough_space">存储空间不足</string>
     
     <!-- zxing -->
-    <string name="scan_text"></string> <!-- 将二维码放入框内，即可自动扫描 -->
+    <string name="scan_text">将二维码放入框内，即可自动扫描</string> <!-- 将二维码放入框内，即可自动扫描 -->
     <string name="msg_error">错误</string>
     <string name="msg_invalid_value">值无效</string>
 </resources>

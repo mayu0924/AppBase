@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import com.appheader.base.common.user.CurrentUserManager;
 import com.appheader.base.common.user.UserInfo;
 import com.appheader.base.common.utils.SystemBarTintManager;
+import com.appheader.base.sdk.glide.GlideManager;
 import com.appheader.base.ui.dialog.CommonDialog;
 
 /**
@@ -24,10 +25,14 @@ public class BaseFragmentActivity extends FragmentActivity {
 	private SystemBarTintManager tintManager;
 	private CommonDialog mLogin = null;
 	public boolean ALIVE;
+
+	protected GlideManager mGlideManager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ALIVE = true;
+		mGlideManager = new GlideManager(this);
 		ActivityManager.getInstance().pushActivity(this);
 	}
 

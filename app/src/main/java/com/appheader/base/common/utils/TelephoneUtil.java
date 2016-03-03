@@ -224,7 +224,8 @@ public class TelephoneUtil {
         try {
             TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             Class<?> simTMclass = Class.forName("android.telephony.MSimTelephonyManager");
-            Object sim = context.getSystemService("phone_msim");
+//            Object sim = context.getSystemService("phone_msim");
+            Object sim = context.getSystemService(Context.TELEPHONY_SERVICE);
             int simId_1 = 0;
             int simId_2 = 1;
 
@@ -274,7 +275,7 @@ public class TelephoneUtil {
             getServiceName.setAccessible(true);
             String spreadTmService = (String) getServiceName.invoke(phoneFactory, Context.TELEPHONY_SERVICE, 1);
 
-            TelephonyManager tm2 = (TelephonyManager) context.getSystemService(spreadTmService);
+            TelephonyManager tm2 = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             String imsi_2 = tm2.getSubscriberId();
             String imei_2 = tm2.getDeviceId();
             int phoneType_2 = tm2.getPhoneType();
