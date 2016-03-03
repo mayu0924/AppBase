@@ -3,7 +3,7 @@ package com.appheader.base;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.appheader.base.sdk.glide.BlurTransformation;
+import com.appheader.base.sdk.glide.RotateTransformation;
 import com.appheader.base.ui.baseAct.BaseFragmentActivity;
 
 import butterknife.Bind;
@@ -28,12 +28,11 @@ public class MainActivity extends BaseFragmentActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 //        mDbService = DbService.getInstance(this);
-        mGlideManager.mRequestManager.load("http://c.hiphotos.baidu.com/zhidao/pic/item/f11f3a292df5e0feab59d9d95d6034a85fdf72a0.jpg")
-                .transform(new BlurTransformation(this))
-                .thumbnail(0.2f)
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
-                .crossFade()
+        mGlideManager.mRequestManager.load("http://attach.bbs.miui.com/forum/201409/08/073328srdr74a8avagtatz.jpg")
+                .transform(new RotateTransformation(this, 90f))
+//                .thumbnail(0.2f)
+//                .crossFade(5000)
+                .centerCrop()
                 .into(mImageView);
     }
 
