@@ -2,6 +2,9 @@ package com.appheader.base.common.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -10,6 +13,8 @@ import android.util.Log;
 
 import com.appheader.base.application.GlobalVars;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -98,5 +103,74 @@ public class AndroidUtil {
         }
         Log.i(TAG, sb.toString());
         return sb.toString();
+    }
+
+    private static final char[] HEX_CHAR = {
+
+            '0', '1', '2', '3', '4', '5', '6', '7',
+
+            '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+
+    };
+
+    /** 获取签名的MD5摘要 */
+
+    public String[] signatureDigest(Context ctx, String pkgName) {
+        PackageInfo pkgInfo = null;
+        try {
+            pkgInfo = ctx.getPackageManager().getPackageInfo(pkgName, PackageManager.GET_SIGNATURES);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        int length = pkgInfo.signatures.length;
+
+        String[] digests = new String[length];
+
+        for (int i = 0; i < length; ++i) {
+
+            Signature sign = pkgInfo.signatures[i];
+
+            try {
+
+                MessageDigest md5 = MessageDigest.getInstance("MD5");
+
+                byte[] digest = md5.digest(sign.toByteArray()); // get digest with md5 algorithm
+
+                digests[i] = toHexString(digest);
+
+            } catch (NoSuchAlgorithmException e) {
+
+                e.printStackTrace();
+
+                digests[i] = null;
+
+            }
+
+        }
+
+        return digests;
+
+    }
+
+    /** 将字节数组转化为对应的十六进制字符串 */
+
+    private String toHexString(byte[] rawByteArray) {
+
+        char[] chars = new char[rawByteArray.length * 2];
+
+        for (int i = 0; i < rawByteArray.length; ++i) {
+
+            byte b = rawByteArray[i];
+
+            chars[i*2] = HEX_CHAR[(b >>> 4 & 0x0F)];
+
+            chars[i*2+1] = HEX_CHAR[(b & 0x0F)];
+
+        }
+
+        return new String(chars);
+
     }
 }
