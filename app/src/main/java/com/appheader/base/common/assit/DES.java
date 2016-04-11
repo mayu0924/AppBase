@@ -54,7 +54,7 @@ public class DES {
 		String encryptStr = encrypt("测试测试");
 		System.out.println("加密后：" + encryptStr);
 		
-		String decryptStr = decrypt("OfLm213SVx3ZWS18IXVAVA==");
+		String decryptStr = decrypt(encryptStr);
 		System.out.println("解密后：" + decryptStr);
 	}
 }
