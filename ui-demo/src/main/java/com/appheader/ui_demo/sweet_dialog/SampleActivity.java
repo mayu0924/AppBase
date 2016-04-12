@@ -9,6 +9,9 @@ import com.appheader.ui_demo.R;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+/**
+ * https://github.com/pedant/sweet-alert-dialog
+ */
 public class SampleActivity extends Activity implements View.OnClickListener {
 
     private int i = -1;
