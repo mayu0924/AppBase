@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.volley.Cache;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -54,7 +55,23 @@ public class RequestHelper {
         request.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         mRequestQueue.add(request);
     }
-    
+
+    public static <T> void sendGetRequest(String tag, String url, Map<String, String> params, Response.Listener<JSONObject> success, Response.ErrorListener failed) {
+        logParams(url, params);
+        NormalGetRequest request = new NormalGetRequest(url, params, success, failed);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                500000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,0));
+        request.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        mRequestQueue.add(request);
+    }
+
+    public static <T> void sendJsonRequest(String tag, String url, JSONObject json, Response.Listener<JSONObject> success, Response.ErrorListener failed) {
+        LogUtil.info(tag, "json/param------\n"+json.toString());
+        JsonObjectRequestWithCookie requestWithCookie = new JsonObjectRequestWithCookie(url, json, success, failed);
+        requestWithCookie.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        mRequestQueue.add(requestWithCookie);
+    }
+
     /**
      * 上传多个文件
      * @param tag 			【标记】

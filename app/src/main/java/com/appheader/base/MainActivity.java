@@ -2,6 +2,7 @@ package com.appheader.base;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.appheader.base.sdk.glide.RotateTransformation;
 import com.appheader.base.ui.baseAct.BaseFragmentActivity;
