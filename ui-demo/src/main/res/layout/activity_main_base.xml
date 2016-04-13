@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.appheader.ui_demo.main.MainActivity">
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/rtv_1"
+        style="@style/roundTextView_style"
+        android:text="SweetDialog" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/rtv_2"
+        style="@style/roundTextView_style"
+        android:layout_below="@id/rtv_1"
+        android:text="RoundView" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/rtv_3"
+        style="@style/roundTextView_style"
+        android:layout_below="@id/rtv_2"
+        android:text="DropDownMenu" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/rtv_4"
+        style="@style/roundTextView_style"
+        android:layout_below="@id/rtv_3"
+        android:text="SmoothCheckBox" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/rtv_5"
+        style="@style/roundTextView_style"
+        android:layout_below="@id/rtv_4"
+        android:text="Swipecardview" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/rtv_6"
+        style="@style/roundTextView_style"
+        android:layout_below="@id/rtv_5"
+        android:text="UCropActivity" />
+</RelativeLayout>

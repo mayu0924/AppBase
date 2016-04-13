@@ -1,8 +1,8 @@
 package com.appheader.ui_demo.sweet_dialog;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.appheader.ui_demo.R;
@@ -12,14 +12,14 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 /**
  * https://github.com/pedant/sweet-alert-dialog
  */
-public class SampleActivity extends Activity implements View.OnClickListener {
+public class SweetDialogActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int i = -1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sample_activity);
+        setContentView(R.layout.activity_sweet_dialog);
         findViewById(R.id.basic_test).setOnClickListener(this);
         findViewById(R.id.under_text_test).setOnClickListener(this);
         findViewById(R.id.error_text_test).setOnClickListener(this);
@@ -96,7 +96,7 @@ public class SampleActivity extends Activity implements View.OnClickListener {
 
                                 // or you can new a SweetAlertDialog to show
                                /* sDialog.dismiss();
-                                new SweetAlertDialog(SampleActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialog(SweetDialogActivity.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Cancelled!")
                                         .setContentText("Your imaginary file is safe :)")
                                         .setConfirmText("OK")
