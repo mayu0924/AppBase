@@ -1,20 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.appheader.ui_demo">
 
-    <application
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application android:name=".application.MApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar"
+        android:theme="@style/AppTheme"
         tools:replace="android:icon">
+
         <activity
-            android:name=".sweet_dialog.SampleActivity"
-            android:label="@string/app_name">
+            android:name=".main.MainActivity"
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".sweet_dialog.SweetDialogActivity"
+            android:label="SweetDialog"/>
+
+        <activity
+            android:name=".roundView.RoundViewActivity"
+            android:label="RoundView"/>
+
+        <activity
+            android:name=".drapdownmenu.DropDownMenuActivity"
+            android:label="DropDownMenu"/>
+
+        <activity
+            android:name=".smoothCheckBox.SmoothCheckBoxActivity"
+            android:label="SmoothCheckBox"/>
+
+        <activity
+            android:name=".swipecardview.SwipecardviewActivity"
+            android:label="Swipecardview"/>
+
+
+        <activity
+            android:name=".arclayout.ArcLayoutActivity"
+            android:label="@string/app_name"
+            />
+
+        <activity
+            android:name=".arclayout.DemoActivity"
+            android:label="@string/app_name"
+            />
+
+        <activity
+            android:name=".arclayout.DemoFreeAngleActivity"
+            android:label="@string/app_name"
+            />
+
+        <activity
+            android:name=".arclayout.DemoLikeTumblrActivity"
+            android:label="@string/app_name"
+            />
+
+        <activity
+            android:name=".arclayout.DemoLikePathActivity"
+            android:label="@string/app_name"
+            />
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 身份证验证的工具（支持5位或18位省份证）
+ * 身份证验证的工具（支持5位或18位身份证）
  * 身份证号码结构：
  * 17位数字和1位校验码：6位地址码数字，8位生日数字，3位出生时间顺序号，1位校验码。
  * 地址码（前6位）：表示对象常住户口所在县（市、镇、区）的行政区划代码，按GB/T2260的规定执行。
@@ -64,7 +64,7 @@ public class IDCardUtil {
        
     /**
      * 身份证验证
-     *@param s  号码内容
+     *@param certNo  号码内容
      *@return 是否有效 null和"" 都是false 
      */
     public static boolean isIDCard(String certNo){
@@ -124,7 +124,7 @@ public class IDCardUtil {
        
        
     public static void main(String[] args) {    
-         boolean mark = isIDCard("341125199102067998");
+         boolean mark = isIDCard("32092319841110335X");
          System.out.println(mark);
     }
    
