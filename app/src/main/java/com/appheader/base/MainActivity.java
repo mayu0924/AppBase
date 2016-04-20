@@ -2,10 +2,17 @@ package com.appheader.base;
 
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.appheader.base.common.network.RequestHelper;
+import com.appheader.base.common.network.entity.ParamBuilder;
+import com.appheader.base.common.network.entity.RequestParam;
+import com.appheader.base.common.utils.Logger;
 import com.appheader.base.sdk.glide.RotateTransformation;
 import com.appheader.base.ui.baseAct.BaseFragmentActivity;
+
+import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,6 +42,19 @@ public class MainActivity extends BaseFragmentActivity {
                 .transform(new RotateTransformation(this, 90f))
                 .crossFade(2000)
                 .into(mImageView);
+        RequestParam params = ParamBuilder.buildParam("name", "msy649166")
+                .append("pwd", "msy649166");
+        RequestHelper.sendRequest("Main", "https://www.chinaytjf.com/YTWS/Login.asmx?op=UserLogin", params.toHashMap(), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Logger.d(response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
     }
 
     /*@OnClick(R.id.save)

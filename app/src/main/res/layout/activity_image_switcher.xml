@@ -24,7 +24,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/umeng_socialize_action_back_selected" />
+                android:src="@mipmap/top_return_icon" />
         </LinearLayout>
 
         <TextView
