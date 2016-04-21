@@ -64,18 +64,6 @@ public class MainActivity extends BaseFragmentActivity {
         });
     }
 
-    private void service() {
-        HashMap<String, String> properties = new HashMap<String, String>();
-        properties.put("name", "18722493013");
-        properties.put("pwd", "msy649166");
-
-        WebServiceUtil mWebServiceUtil = new WebServiceUtil();
-        mWebServiceUtil.setIsDebug(true);
-        mWebServiceUtil.setIsDotNet(true);
-        SoapObject soapObject = mWebServiceUtil.GetObject( "https://www.chinaytjf.com/YTWS/Login.asmx?op=UserLogin", "/YTWS/Login.asmx", "UserLogin", properties);
-        Logger.d(soapObject.toString());
-    }
-
     /*@OnClick(R.id.save)
     public void testSave(){
         GreenArticle greenArticle = new GreenArticle();
