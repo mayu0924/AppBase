@@ -9,7 +9,6 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.appheader.base.application.GlobalVars;
 import com.appheader.base.common.utils.LogUtil;
 
 import org.json.JSONException;
@@ -51,7 +50,13 @@ public class RequestHelper {
      */
     public static <T> void sendRequest(String tag, String url, Map<String, String> params, Response.Listener<JSONObject> success, Response.ErrorListener failed) {
         logParams(url, params);
-        NormalPostRequest request = new NormalPostRequest(GlobalVars.getAppServerUrl() + url, params, success, failed);
+        NormalPostRequest request = new NormalPostRequest(url, params, success, failed);
+        request.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        mRequestQueue.add(request);
+    }
+
+    public static <T> void sendBodyRequest(String tag, String url, String params, Response.Listener<JSONObject> success, Response.ErrorListener failed) {
+        NormalPostRequest request = new NormalPostRequest(url, params, success, failed);
         request.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         mRequestQueue.add(request);
     }

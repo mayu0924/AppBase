@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.appheader.ui_demo"
-        minSdkVersion 23
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -35,4 +35,5 @@ dependencies {
     compile 'com.github.dongjunkun:DropDownMenu:1.0.3'
     compile 'com.facebook.fresco:fresco:0.9.0'
     compile 'com.ogaclejapan.arclayout:library:1.0.1@aar'
+    compile files('libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar')
 }

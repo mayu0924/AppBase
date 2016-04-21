@@ -6,20 +6,23 @@ import android.widget.ImageView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.appheader.base.common.network.RequestHelper;
-import com.appheader.base.common.network.entity.ParamBuilder;
-import com.appheader.base.common.network.entity.RequestParam;
+import com.appheader.base.common.network.WebServiceUtil;
 import com.appheader.base.common.utils.Logger;
 import com.appheader.base.sdk.glide.RotateTransformation;
 import com.appheader.base.ui.baseAct.BaseFragmentActivity;
 
 import org.json.JSONObject;
+import org.ksoap2.serialization.SoapObject;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0104/2255.html
- * <p>
+ * <p/>
  * https://github.com/codepath/android_guides/wiki/ActiveAndroid-Guide
  *
  * @author mayu
@@ -42,19 +45,35 @@ public class MainActivity extends BaseFragmentActivity {
                 .transform(new RotateTransformation(this, 90f))
                 .crossFade(2000)
                 .into(mImageView);
-        RequestParam params = ParamBuilder.buildParam("name", "msy649166")
-                .append("pwd", "msy649166");
-        RequestHelper.sendRequest("Main", "https://www.chinaytjf.com/YTWS/Login.asmx?op=UserLogin", params.toHashMap(), new Response.Listener<JSONObject>() {
+
+    }
+
+    @OnClick(R.id.imageView)
+    public void onClickImageView(){
+        String param = "name=18722493013&pwd=msy649166";
+        RequestHelper.sendBodyRequest("Main", "https://www.chinaytjf.com/YTWS/Login.asmx/UserLogin", param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Logger.d(response.toString());
+                System.out.print(response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Logger.d(error.getMessage());
             }
         });
+    }
+
+    private void service() {
+        HashMap<String, String> properties = new HashMap<String, String>();
+        properties.put("name", "18722493013");
+        properties.put("pwd", "msy649166");
+
+        WebServiceUtil mWebServiceUtil = new WebServiceUtil();
+        mWebServiceUtil.setIsDebug(true);
+        mWebServiceUtil.setIsDotNet(true);
+        SoapObject soapObject = mWebServiceUtil.GetObject( "https://www.chinaytjf.com/YTWS/Login.asmx?op=UserLogin", "/YTWS/Login.asmx", "UserLogin", properties);
+        Logger.d(soapObject.toString());
     }
 
     /*@OnClick(R.id.save)

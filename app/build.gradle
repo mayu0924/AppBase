@@ -9,6 +9,8 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -77,4 +79,6 @@ dependencies {
     compile files('libs/httpclient-4.5.jar')
     compile files('libs/httpcore-4.4.1.jar')
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile files('libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar')
+    compile 'com.android.support:multidex:'
 }

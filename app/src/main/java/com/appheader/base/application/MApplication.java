@@ -1,8 +1,8 @@
 package com.appheader.base.application;
 
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
 
 import com.appheader.base.common.network.RequestHelper;
@@ -19,7 +19,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
  * Application
  * @author mayu
  */
-public class MApplication extends Application {
+public class MApplication extends MultiDexApplication {
 	private static TelephonyManager sTelephonyManager;
 	private static ActivityManager sActivityManager;
 
