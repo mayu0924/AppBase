@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
 
+import com.appheader.base.common.data.DataKeeper;
 import com.appheader.base.common.network.RequestHelper;
 import com.appheader.base.common.orm.Constants;
 import com.appheader.base.common.utils.ImageLoadUtil;
@@ -26,7 +27,7 @@ public class MApplication extends MultiDexApplication {
 	private static MApplication mInstance;
 	private static DaoMaster daoMaster;
 	private static DaoSession daoSession;
-
+	public static DataKeeper sDataKeeper;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -52,6 +53,7 @@ public class MApplication extends MultiDexApplication {
 		RequestHelper.init(this);
 		// 需要登录权限
 		JPushController.toggle(this);
+		sDataKeeper = new DataKeeper(this, "app");
 	}
 
 	/**

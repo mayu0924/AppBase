@@ -1,6 +1,7 @@
 package com.appheader.base.common.network;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -8,10 +9,7 @@ import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.appheader.base.application.GlobalVars;
-import com.appheader.base.common.user.CurrentUserManager;
-import com.appheader.base.common.user.UserInfo;
-import com.appheader.base.common.utils.LogUtil;
+import com.appheader.base.application.MApplication;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +23,7 @@ import java.util.Map;
  * Created by mayu on 15/8/25,下午3:22.
  */
 public class NormalPostRequest extends Request<JSONObject> {
+    public static volatile String cookies;
     private Map<String, String> mMap;
     private String mUrl;
     private String mBody;
@@ -61,6 +60,13 @@ public class NormalPostRequest extends Request<JSONObject> {
     //此处因为response返回值需要json数据,和JsonObjectRequest类一样即可
     @Override
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+//        Map<String, String> responseHeaders = response.headers;
+//        String rawCookies = responseHeaders.get(SET_COOKIE_KEY);
+//        if(!TextUtils.isEmpty(rawCookies)){
+//            cookies = rawCookies.substring(0, rawCookies.indexOf(";"));
+//        }
+        // String cookies = part1;
+//        Log.d("sessionid", "sessionid----------------" + cookies);
         try {
             String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
             return Response.success(new JSONObject(jsonString),HttpHeaderParser.parseCacheHeaders(response));
@@ -83,15 +89,28 @@ public class NormalPostRequest extends Request<JSONObject> {
         if (headers == null || headers.equals(Collections.emptyMap())) {
 			headers = new HashMap<String, String>();
 		}
-        headers.put("platform", "android");
-        headers.put("Accept-Charset", "UTF-8");
-        headers.put("versionCode", String.valueOf(GlobalVars.getVersionCode()));
-        headers.put("clientType", "customer");
-        UserInfo userInfo = CurrentUserManager.getCurrentUser();
-        if (userInfo != null) {
-        	headers.put("session_id", userInfo.getSession_id());
-            LogUtil.debug("NormalPostRequest", "session_id = " + userInfo.getSession_id());
-        }
+        String sessionId = MApplication.sDataKeeper.get("sessionid","");
+        addSessionCookie(headers, sessionId);
+//        headers.put("ASP.NET_SessionId", MApplication.sDataKeeper.get("sessionid",""));
+        Log.d("调试", "headers----------------" + headers);
         return headers;
+    }
+
+    private static final String SET_COOKIE_KEY = "Set-Cookie";
+    private static final String COOKIE_KEY = "Cookie";
+    private static final String SESSION_COOKIE = "ASP.NET_SessionId";
+
+    /**
+     * Adds session cookie to headers if exists.
+     * @param headers
+     */
+    public final void addSessionCookie(Map<String, String> headers, String sessionId) {
+        if (sessionId.length() > 0) {
+            StringBuilder builder = new StringBuilder();
+            builder.append(SESSION_COOKIE);
+            builder.append("=");
+            builder.append(sessionId);
+            headers.put(COOKIE_KEY, builder.toString());
+        }
     }
 }
