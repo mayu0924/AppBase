@@ -24,18 +24,21 @@ import java.util.Map;
  */
 public class NormalPostRequest extends Request<JSONObject> {
     public static volatile String cookies;
+    private static final String SET_COOKIE_KEY = "Set-Cookie";
+    private static final String COOKIE_KEY = "Cookie";
+    private static final String SESSION_COOKIE = "ASP.NET_SessionId";
     private Map<String, String> mMap;
     private String mUrl;
     private String mBody;
     private Response.Listener<JSONObject> mListener;
 
-    public NormalPostRequest(String url, Map<String, String> map, Response.Listener<JSONObject> listener,Response.ErrorListener errorListener) {
+    public NormalPostRequest(String url, Map<String, String> map, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(Request.Method.POST, url, errorListener);
         mListener = listener;
         mMap = map;
     }
 
-    public NormalPostRequest(String url, String body, Response.Listener<JSONObject> listener,Response.ErrorListener errorListener) {
+    public NormalPostRequest(String url, String body, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(Request.Method.POST, url, errorListener);
         mUrl = url;
         mListener = listener;
@@ -50,7 +53,7 @@ public class NormalPostRequest extends Request<JSONObject> {
 
     @Override
     public byte[] getBody() throws AuthFailureError {
-        if(!TextUtils.isEmpty(mBody)){
+        if (!TextUtils.isEmpty(mBody)) {
             return mBody.getBytes();
         } else {
             return super.getBody();
@@ -69,7 +72,7 @@ public class NormalPostRequest extends Request<JSONObject> {
 //        Log.d("sessionid", "sessionid----------------" + cookies);
         try {
             String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
-            return Response.success(new JSONObject(jsonString),HttpHeaderParser.parseCacheHeaders(response));
+            return Response.success(new JSONObject(jsonString), HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         } catch (JSONException je) {
@@ -84,24 +87,21 @@ public class NormalPostRequest extends Request<JSONObject> {
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-    	super.getHeaders();
+        super.getHeaders();
         Map<String, String> headers = super.getHeaders();
         if (headers == null || headers.equals(Collections.emptyMap())) {
-			headers = new HashMap<String, String>();
-		}
-        String sessionId = MApplication.sDataKeeper.get("sessionid","");
+            headers = new HashMap<String, String>();
+        }
+        String sessionId = MApplication.sDataKeeper.get("sessionid", "");
         addSessionCookie(headers, sessionId);
-//        headers.put("ASP.NET_SessionId", MApplication.sDataKeeper.get("sessionid",""));
         Log.d("调试", "headers----------------" + headers);
         return headers;
     }
 
-    private static final String SET_COOKIE_KEY = "Set-Cookie";
-    private static final String COOKIE_KEY = "Cookie";
-    private static final String SESSION_COOKIE = "ASP.NET_SessionId";
 
     /**
      * Adds session cookie to headers if exists.
+     *
      * @param headers
      */
     public final void addSessionCookie(Map<String, String> headers, String sessionId) {

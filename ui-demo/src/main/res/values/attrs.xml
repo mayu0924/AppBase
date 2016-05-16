@@ -7,4 +7,15 @@
         <attr name="color_unchecked" format="color"/>
         <attr name="color_unchecked_stroke" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="Circlebar">
+        <attr name="circle_duration" format="integer"/>
+        <attr name="circle_bg_width" format="dimension"/>
+        <attr name="circle_bar_width" format="dimension"/>
+        <attr name="color_bg" format="color"/>
+        <attr name="color_bar" format="color"/>
+        <attr name="color_text" format="color"/>
+        <attr name="max_value" format="float"/>
+        <attr name="value" format="float"/>
+    </declare-styleable>
 </resources>

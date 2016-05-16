@@ -44,4 +44,10 @@
         style="@style/roundTextView_style"
         android:layout_below="@id/rtv_5"
         android:text="ArcLayoutActivity" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/rtv_7"
+        style="@style/roundTextView_style"
+        android:layout_below="@id/rtv_6"
+        android:text="CircleBarActivity" />
 </RelativeLayout>

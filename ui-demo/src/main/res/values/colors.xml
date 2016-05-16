@@ -9,7 +9,7 @@
     <color name="scrim">#42000000</color>
     <color name="pressed">#33000000</color>
 
-    <color name="light_blue_500">#03A9F4</color>
+    <color name="light_blue_500">#33b8fc</color>
     <color name="cyan_500">#00BCD4</color>
     <color name="teal_500">#009688</color>
     <color name="green_500">#4CAF50</color>
@@ -29,4 +29,6 @@
     <color name="path_black">#403B36</color>
     <color name="path_green">#5FB336</color>
     <color name="path_purple">#49098A</color>
+
+    <color name="circlebar_gray">#99cccccc</color>
 </resources>
