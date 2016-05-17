@@ -2,13 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
-    android:gravity="center">
+    android:background="@color/gray">
 
     <com.appheader.ui_demo.mine.QQHealthView
+        android:id="@+id/qqHealthView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp" />
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        style="@style/Widget.SeekBar.Normal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/qqHealthView"
+        android:layout_marginBottom="20dip"
+        android:progress="0"
+        android:secondaryProgress="0"/>
 
 </RelativeLayout>

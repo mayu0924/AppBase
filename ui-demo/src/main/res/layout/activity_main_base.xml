@@ -50,4 +50,10 @@
         style="@style/roundTextView_style"
         android:layout_below="@id/rtv_6"
         android:text="CircleBarActivity" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/rtv_8"
+        style="@style/roundTextView_style"
+        android:layout_below="@id/rtv_7"
+        android:text="QQHealthViewActivity" />
 </RelativeLayout>

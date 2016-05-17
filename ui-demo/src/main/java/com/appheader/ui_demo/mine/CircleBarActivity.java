@@ -14,9 +14,9 @@ public class CircleBarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_circlebar);
-//        initProgress(263);
-        setContentView(R.layout.activity_qq_health);
+        setContentView(R.layout.activity_circlebar);
+        initProgress(263);
+
     }
 
     private void initProgress(int value) {

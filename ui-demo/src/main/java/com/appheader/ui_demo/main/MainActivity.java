@@ -8,6 +8,7 @@ import com.appheader.ui_demo.R;
 import com.appheader.ui_demo.arclayout.ArcLayoutActivity;
 import com.appheader.ui_demo.drapdownmenu.DropDownMenuActivity;
 import com.appheader.ui_demo.mine.CircleBarActivity;
+import com.appheader.ui_demo.mine.QQHealthViewActivity;
 import com.appheader.ui_demo.roundView.RoundViewActivity;
 import com.appheader.ui_demo.smoothCheckBox.SmoothCheckBoxActivity;
 import com.appheader.ui_demo.sweet_dialog.SweetDialogActivity;
@@ -57,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.rtv_7)
     public void startCircleBarActivity(){
         startActivity(new Intent(this, CircleBarActivity.class));
+    }
+
+    @OnClick(R.id.rtv_8)
+    public void startQQHealthViewActivity(){
+        startActivity(new Intent(this, QQHealthViewActivity.class));
     }
 
     @Override
