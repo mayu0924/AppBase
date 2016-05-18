@@ -8,7 +8,7 @@
         android:id="@+id/qqHealthView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp" />
 
@@ -17,8 +17,9 @@
         style="@style/Widget.SeekBar.Normal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/qqHealthView"
-        android:layout_marginBottom="20dip"
+        android:layout_below="@id/qqHealthView"
+        android:layout_marginTop="30dip"
+        android:max="15000"
         android:progress="0"
         android:secondaryProgress="0"/>
 
