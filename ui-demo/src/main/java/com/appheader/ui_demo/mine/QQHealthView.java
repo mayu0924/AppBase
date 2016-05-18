@@ -387,11 +387,11 @@ public class QQHealthView extends View {
 
     public void setSteps(int progress){
         if(progress > 0){
-            mPercent = (float) progress / 100;
+            mPercent = (float) progress / mMaxSteps;
         } else {
             mPercent = 0.0001f;
         }
-        mStep = 15000 * progress / 100;
+        mStep = progress;
         invalidate();
     }
 }
