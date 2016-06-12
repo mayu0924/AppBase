@@ -290,7 +290,7 @@ compile 'com.code19.library:library:0.0.7'
 
     
     
-```shell 
+```shell
 
     /**
      * 身份证校验

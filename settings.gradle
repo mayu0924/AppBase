@@ -1,3 +1,3 @@
-include ':app', ':greendao-generator', ':javabase', ':ui-demo'
+include ':app', ':greendao-generator', ':javabase', ':ui-demo', ':Tiangou'
 include ':social_sdk_library_project'
 include ':umeng_share_lib'
