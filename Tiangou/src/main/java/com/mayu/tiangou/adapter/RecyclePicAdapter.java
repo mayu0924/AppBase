@@ -1,7 +1,6 @@
 package com.mayu.tiangou.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.like.LikeButton;
 import com.mayu.tiangou.R;
 import com.mayu.tiangou.common.util.DensityUtil;
@@ -65,8 +62,12 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclePicAdapter.My
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View inflate = layoutInflater.inflate(R.layout.item_welfare_staggered, parent, false);
-
-        return new MyViewHolder(inflate);
+        MyViewHolder viewHolder = new MyViewHolder(inflate);
+        viewHolder.image = (ImageView) inflate.findViewById(R.id.image);
+        viewHolder.btnCollect = (LikeButton) inflate.findViewById(R.id.btn_collect);
+        viewHolder.tvShowTime = (TextView) inflate.findViewById(R.id.tvShowTime);
+        viewHolder.rlRoot = (RelativeLayout) inflate.findViewById(R.id.rl_root);
+        return viewHolder;
     }
 
     @Override
@@ -76,7 +77,7 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclePicAdapter.My
         viewHolder.tvShowTime.setText(resultsEntity.getTitle());
         //图片显示
 //        int w = (DensityUtil.getWidth(context) - DensityUtil.dip2px(context, 18)) / 2;
-        String url = "http://tnfs.tngou.net/image" + resultsEntity.getImg();
+        final String url = "http://tnfs.tngou.net/image" + resultsEntity.getImg();
         int h = DensityUtil.dip2px(context, 240);
         int w = (DensityUtil.getWidth(context) - DensityUtil.dip2px(context, 18)) / 2;
 //        SimpleTarget target = new SimpleTarget<Bitmap>(w, h) {
@@ -85,21 +86,23 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclePicAdapter.My
 //                viewHolder.image.setImageBitmap(resource);
 //            }
 //        };
-//
-        SimpleTarget t= new SimpleTarget(w, h) {
-            @Override
-            public void onResourceReady(Object resource, GlideAnimation glideAnimation) {
-                viewHolder.image.setImageBitmap((Bitmap) resource);
-            }
-        };
+//        viewHolder.image.setTag(url);
+//        SimpleTarget t= new SimpleTarget(w, h) {
+//            @Override
+//            public void onResourceReady(Object resource, GlideAnimation glideAnimation) {
+//                if(viewHolder.image.getTag().equals(url)){
+//                    viewHolder.image.setImageBitmap((Bitmap) resource);
+//                }
+//            }
+//        };
 
         Glide.with(context)
                 .load(url)
-                .asBitmap()
-                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .placeholder(R.drawable.pic_gray_bg)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(t);
+                .crossFade()
+                .centerCrop()
+                .into(viewHolder.image);
 
         //查询是否存在收藏
 //        boolean isCollect = new CollectDao().queryOneCollectByID(resultsEntity.get_id());
@@ -160,10 +163,6 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclePicAdapter.My
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
-            btnCollect = (LikeButton) itemView.findViewById(R.id.btn_collect);
-            tvShowTime = (TextView) itemView.findViewById(R.id.tvShowTime);
-            rlRoot = (RelativeLayout) itemView.findViewById(R.id.rl_root);
         }
     }
 

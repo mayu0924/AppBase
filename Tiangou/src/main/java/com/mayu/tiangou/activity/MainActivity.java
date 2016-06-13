@@ -1,4 +1,4 @@
-package com.mayu.tiangou;
+package com.mayu.tiangou.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,22 +7,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
+import com.mayu.tiangou.R;
 import com.mayu.tiangou.common.network.RequestHelper;
 import com.mayu.tiangou.common.network.entity.UrlConstants;
 import com.mayu.tiangou.entity.Category;
+import com.mayu.tiangou.fragment.PageFragment;
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private String[] tabTitleArray = {"要闻", "英雄联盟", "守望先锋", "NBA", "程序员", "电竞",
             "经济"};

@@ -1,5 +1,6 @@
-package com.mayu.tiangou;
+package com.mayu.tiangou.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,17 +17,22 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.google.gson.Gson;
+import com.mayu.tiangou.R;
+import com.mayu.tiangou.activity.BaseActivity;
+import com.mayu.tiangou.activity.ImagesActivity;
 import com.mayu.tiangou.adapter.RecyclePicAdapter;
 import com.mayu.tiangou.common.network.RequestHelper;
 import com.mayu.tiangou.common.network.entity.UrlConstants;
 import com.mayu.tiangou.common.util.L;
 import com.mayu.tiangou.entity.Category;
 import com.mayu.tiangou.entity.ImageBean;
+import com.mayu.tiangou.entity.ImageDetailBean;
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -101,12 +107,7 @@ public class PageFragment extends Fragment implements OnRefreshListener, OnLoadM
             recyclePicAdapter.setOnItemClickLitener(new RecyclePicAdapter.OnItemClickLitener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    ArrayList<String> arrayList = new ArrayList<>();
-                    for (int i = 0; i < mListData.size(); i++) {
-                        String url = "http://tnfs.tngou.net/image" + mListData.get(i).getImg();
-                        arrayList.add(url);
-                    }
-//                    IntentUtils.startToImageShow(context, arrayList, position);
+                    getImageDetailList(mListData.get(position).getId());
                 }
             });
 
@@ -114,6 +115,42 @@ public class PageFragment extends Fragment implements OnRefreshListener, OnLoadM
             recyclePicAdapter.updateDatas(mListData);
         }
 
+    }
+
+    private void getImageDetailList(int id){
+        ((BaseActivity)getActivity()).showProgressDialog();
+        String url = UrlConstants.GET_PICTURE_DETAIL_LIST + "?id=" + id;
+        RequestHelper.sendGetRequest(TAG, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                ((BaseActivity)getActivity()).dissmissProgressDialog();
+                System.out.println("------------------------\n"
+                        + response.toString()
+                        + "\n------------------------");
+                ImageDetailBean imageDetailBean = new Gson().fromJson(response.toString(), ImageDetailBean.class);
+                if(imageDetailBean.isStatus() && imageDetailBean.getList().size() > 0){
+                    ArrayList<String> images = new ArrayList<>();
+                    List<ImageDetailBean.ListBean> list = imageDetailBean.getList();
+                    for (int i = 0; i < list.size(); i++) {
+                        images.add("http://tnfs.tngou.net/image"+list.get(i).getSrc());
+                    }
+                    Intent intent = new Intent(getActivity(), ImagesActivity.class);
+                    intent.putExtra("title", imageDetailBean.getTitle());
+                    intent.putExtra("size", imageDetailBean.getSize());
+                    intent.putStringArrayListExtra("images", images);
+                    intent.putExtra("index", 0);
+                    getActivity().startActivity(intent);
+                } else {
+                    ((BaseActivity)getActivity()).showProgressDialog("没有更多图片");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                ((BaseActivity)getActivity()).dissmissProgressDialog();
+                Logger.e(error);
+            }
+        });
     }
 
     private void getImageList(final int page) {

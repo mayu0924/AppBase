@@ -47,6 +47,8 @@ public class UrlConstants {
 	public static final String GET_PICTURE_MENU = HTTP_IP + "/tnfs/api/classify";
 	// 图片列表
 	public static final String GET_PICTURE_LIST = HTTP_IP + "/tnfs/api/list";
+	// 图片详情列表
+	public static final String GET_PICTURE_DETAIL_LIST = HTTP_IP + "/tnfs/api/show";
 	// 读取文件资源
 	public static final String READ_RESOURCE_STREAM = "/resource/client.do?method=read&resourceId=";
 	// 读取图片缩略图
