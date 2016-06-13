@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#f46394</color>
+    <color name="colorPrimaryDark">#ef5387</color>
+    <color name="colorPrimaryDark2">#faaacb</color>
+    <color name="colorAccent">#f46394</color>
+
+    <color name="translate">#00000000</color>
+    <color name="translate_black">#38000000</color>
+    <color name="mainColoe">#54aee6</color>
+    <color name="backgroundGray">#efefef</color>
+
+    <color name="refreshBgBlack">#404040</color>
+
+    <color name="textBlack">#363636</color>
+    <color name="textGray">#ababab</color>
+
+    <!--qita-->
+    <color name="style_color_accent">#d32f2f</color>
+    <color name="style_window_background">#212121</color>
+    <color name="style_window_background_light">#ffffff</color>
+
+    <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="gray">#494949</color>
+    <color name="red">#ff0000</color>
+    <color name="itemGrayBg">#eaeaea</color>
+
+    <color name="lineColor">#dfdfdf</color>
+
+    <color name="google_blue">#4285F4</color>
+    <color name="google_red">#EA4335</color>
+    <color name="google_green">#34A853</color>
+    <color name="google_yellow">#FBBC05</color>
 </resources>

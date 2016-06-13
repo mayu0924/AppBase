@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private void initTabLayout(){
         mAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), this);
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mViewPager.setOffscreenPageLimit(mCategoryList.size());
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.setupWithViewPager(mViewPager);
